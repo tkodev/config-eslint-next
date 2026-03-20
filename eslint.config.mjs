@@ -4,14 +4,14 @@ import nextTs from 'eslint-config-next/typescript'
 import prettierConfig from 'eslint-config-prettier/flat'
 import perfectionistPlugin from 'eslint-plugin-perfectionist'
 import prettierPlugin from 'eslint-plugin-prettier'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import { globalIgnores } from 'eslint/config'
 
 /**
- * Shared ESLint flat config for Next.js + TypeScript apps.
- * Consumers can import this as:
- * import tkodevEslintConfig from '@tkodev/config-eslint-next'
+ * Shared ESLint flat config fragment for Next.js + TypeScript apps.
+ * Include in your app config via:
+ * export default [...tkodevEslintConfig, ...yourOwnConfig]
  */
-const eslintConfig = defineConfig([
+const tkodevEslintConfig = [
   ...nextVitals,
   ...nextTs,
   ...[prettierConfig],
@@ -149,6 +149,12 @@ const eslintConfig = defineConfig([
     }
   },
   globalIgnores(['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'])
-])
+]
 
-export default eslintConfig
+/**
+ * Helper to merge this shared config with app-specific config entries.
+ * @param {import('eslint').Linter.Config[]} appConfig
+ */
+export const withTkodevConfig = (appConfig = []) => [...tkodevEslintConfig, ...appConfig]
+
+export default tkodevEslintConfig

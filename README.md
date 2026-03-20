@@ -22,8 +22,22 @@ Create `eslint.config.mjs` in your project:
 
 ```js
 import tkodevEslintConfig from '@tkodev/config-eslint-next'
+import { defineConfig } from 'eslint/config'
 
-export default tkodevEslintConfig
+export default defineConfig([
+  ...tkodevEslintConfig,
+  // your project-specific rules/config entries here
+])
+```
+
+Or use the helper:
+
+```js
+import { withTkodevConfig } from '@tkodev/config-eslint-next'
+
+export default withTkodevConfig([
+  // your project-specific rules/config entries here
+])
 ```
 
 ## Publish to GitHub Packages
@@ -36,7 +50,7 @@ export default tkodevEslintConfig
 echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/.npmrc
 ```
 
-4. Publish:
+1. Publish:
 
 ```bash
 pnpm publish --access restricted --no-git-checks
