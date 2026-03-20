@@ -1,0 +1,15 @@
+---
+description: Always use pnpm for package management
+alwaysApply: true
+---
+
+# PNPM Only
+
+- Use `pnpm` for all package management commands.
+- Do not use `npm` or `yarn`.
+- Prefer:
+  - `pnpm add` for dependencies
+  - `pnpm add -D` for dev dependencies
+  - `pnpm remove` for removal
+  - `pnpm install` for install
+  - `pnpm run <script>` for scripts
