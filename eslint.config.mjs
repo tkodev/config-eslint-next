@@ -10,11 +10,16 @@ import { globalIgnores } from 'eslint/config'
  * Shared ESLint flat config fragment for Next.js + TypeScript apps.
  * Include in your app config via:
  * export default [...tkodevEslintConfig, ...yourOwnConfig]
+ *
+ * @type {import('eslint').Linter.Config[]}
  */
-const tkodevEslintConfig = [
+const tkodevConfig = [
+  // core rules
   ...nextVitals,
   ...nextTs,
   ...[prettierConfig],
+
+  // base rules for all files
   {
     files: ['**/*.{js,jsx,ts,tsx,mjs}'],
     languageOptions: {
@@ -33,15 +38,10 @@ const tkodevEslintConfig = [
         "error",
         {
           "selector": "ExportNamedDeclaration[declaration!=null]",
-          "message": "Do not use inline exports. Use named exports at the end of the file."
+          "message": "Do not use inline exports. Use block exports at the end of the file."
         }
       ],
-      'import/no-default-export': [
-        'error',
-        {
-          message: 'Do not use default exports. Use named exports at the end of the file.',
-        }
-      ],
+      'import/no-default-export': 'error',
       'react/function-component-definition': [
         'error',
         {
@@ -159,23 +159,27 @@ const tkodevEslintConfig = [
           }
         }
       ]
-    },
-    overrides: [
-      {
-        files: ['pages/**/*', 'app/**/*', 'api/**/*'],
-        rules: {
-          'import/no-default-export': 'off',
-        },
-      },
-    ],
+    }
   },
+
+  // allow default exports in pages, app, api, and root files
+  {
+    files: ['pages/**/*', 'app/**/*', 'api/**/*', '*.{js,jsx,ts,tsx,mjs}'],
+    rules: {
+      'import/no-default-export': 'off'
+    }
+  },
+
+  // global ignores
   globalIgnores(['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'])
 ]
 
 /**
  * Helper to merge this shared config with app-specific config entries.
- * @param {import('eslint').Linter.Config[]} appConfig
+ * @param {import('eslint').Linter.Config[]} [appConfig]
+ * @returns {import('eslint').Linter.Config[]}
  */
-export const withTkodevConfig = (appConfig = []) => [...tkodevEslintConfig, ...appConfig]
+const withTkodevConfig = (appConfig = []) => [...tkodevConfig, ...appConfig]
 
-export default tkodevEslintConfig
+export { withTkodevConfig, tkodevConfig }
+

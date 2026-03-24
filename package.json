@@ -5,10 +5,14 @@
   "type": "module",
   "main": "./eslint.config.mjs",
   "exports": {
-    ".": "./eslint.config.mjs"
+    ".": {
+      "types": "./eslint.config.d.mts",
+      "default": "./eslint.config.mjs"
+    }
   },
   "files": [
     "eslint.config.mjs",
+    "eslint.config.d.mts",
     "README.md"
   ],
   "keywords": [
@@ -42,5 +46,8 @@
     "eslint": "^9.0.0",
     "next": ">=16",
     "typescript": ">=5"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.4"
   }
 }
