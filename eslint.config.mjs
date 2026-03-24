@@ -188,6 +188,14 @@ const tkodevConfig = [
     }
   },
 
+  // Next.js / bundler entry files require inline re-exports
+  {
+    files: ['**/proxy.ts', '**/middleware.ts'],
+    rules: {
+      'no-restricted-syntax': 'off'
+    }
+  },
+
   // global ignores
   globalIgnores(['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'])
 ]
