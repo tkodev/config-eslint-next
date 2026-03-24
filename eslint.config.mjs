@@ -45,10 +45,11 @@ const tkodevEslintConfig = [
       'react/function-component-definition': [
         'error',
         {
-          namedComponents: 'arrow-function',
-          unnamedComponents: 'arrow-function'
+          namedComponents: 'function-declaration',
+          unnamedComponents: 'function-expression'
         }
       ],
+      "@typescript-eslint/consistent-type-exports": "error",
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       'prettier/prettier': [
         'error',
