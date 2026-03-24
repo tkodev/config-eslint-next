@@ -29,7 +29,19 @@ const tkodevEslintConfig = [
       perfectionist: perfectionistPlugin
     },
     rules: {
-      'import/no-default-export': 'off',
+      "no-restricted-syntax": [
+        "error",
+        {
+          "selector": "ExportNamedDeclaration[declaration!=null]",
+          "message": "Do not use inline exports. Use named exports at the end of the file."
+        }
+      ],
+      'import/no-default-export': [
+        'error',
+        {
+          message: 'Do not use default exports. Use named exports at the end of the file.',
+        }
+      ],
       'react/function-component-definition': [
         'error',
         {
@@ -146,7 +158,15 @@ const tkodevEslintConfig = [
           }
         }
       ]
-    }
+    },
+    overrides: [
+      {
+        files: ['pages/**/*', 'app/**/*', 'api/**/*'],
+        rules: {
+          'import/no-default-export': 'off',
+        },
+      },
+    ],
   },
   globalIgnores(['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'])
 ]
