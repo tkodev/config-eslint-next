@@ -39,8 +39,8 @@ const tkodevConfig = [
       'react/function-component-definition': [
         'error',
         {
-          namedComponents: 'function-declaration',
-          unnamedComponents: 'function-expression'
+          namedComponents: 'arrow-function',
+          unnamedComponents: 'arrow-function'
         }
       ],
       'prettier/prettier': [
