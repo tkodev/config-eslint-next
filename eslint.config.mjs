@@ -19,39 +19,20 @@ const tkodevConfig = [
   ...nextTs,
   ...[prettierConfig],
 
-  // Type-aware parser options for .ts/.tsx (required by @typescript-eslint rules that use the type checker).
-  // tsconfigRootDir: ESLint is expected to run from the app root (where tsconfig.json lives). Monorepo setups
-  // may need an extra config entry with tsconfigRootDir: import.meta.dirname in the app's eslint.config.mjs.
-  {
-    files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      parserOptions: {
-        projectService: true,
-        tsconfigRootDir: process.cwd()
-      }
-    }
-  },
-
   // base rules for all files
   {
     files: ['**/*.{js,jsx,ts,tsx,mjs}'],
-    languageOptions: {
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module'
-      }
-    },
     plugins: {
       '@next/eslint-plugin-next': nextPlugin,
       prettier: prettierPlugin,
       perfectionist: perfectionistPlugin
     },
     rules: {
-      "no-restricted-syntax": [
-        "error",
+      'no-restricted-syntax': [
+        'error',
         {
-          "selector": "ExportNamedDeclaration[declaration!=null]",
-          "message": "Do not use inline exports. Use block exports at the end of the file."
+          selector: 'ExportNamedDeclaration[declaration!=null]',
+          message: 'Do not use inline exports. Use block exports at the end of the file.'
         }
       ],
       'import/no-default-export': 'error',
@@ -62,8 +43,6 @@ const tkodevConfig = [
           unnamedComponents: 'function-expression'
         }
       ],
-      "@typescript-eslint/consistent-type-exports": "error",
-      '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       'prettier/prettier': [
         'error',
         {
@@ -175,6 +154,32 @@ const tkodevConfig = [
     }
   },
 
+  // Type-aware rules for .ts/.tsx
+  {
+    files: ['**/*.{ts,tsx}'],
+    rules: {
+      '@typescript-eslint/consistent-type-exports': 'error',
+      '@typescript-eslint/consistent-type-definitions': ['error', 'type']
+    },
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname
+      }
+    }
+  },
+  {
+    files: ['**/*.{js,jsx,mjs}'],
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module'
+      }
+    }
+  },
+
   // allow default exports in pages, app, api, and root files
   {
     files: ['pages/**/*', 'app/**/*', 'api/**/*', '*.{js,jsx,ts,tsx,mjs}'],
@@ -194,5 +199,5 @@ const tkodevConfig = [
  */
 const withTkodevConfig = (appConfig = []) => [...tkodevConfig, ...appConfig]
 
-export { withTkodevConfig, tkodevConfig }
-
+export default tkodevConfig
+export { tkodevConfig, withTkodevConfig }
