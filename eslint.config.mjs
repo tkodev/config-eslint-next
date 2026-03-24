@@ -19,6 +19,19 @@ const tkodevConfig = [
   ...nextTs,
   ...[prettierConfig],
 
+  // Type-aware parser options for .ts/.tsx (required by @typescript-eslint rules that use the type checker).
+  // tsconfigRootDir: ESLint is expected to run from the app root (where tsconfig.json lives). Monorepo setups
+  // may need an extra config entry with tsconfigRootDir: import.meta.dirname in the app's eslint.config.mjs.
+  {
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: process.cwd()
+      }
+    }
+  },
+
   // base rules for all files
   {
     files: ['**/*.{js,jsx,ts,tsx,mjs}'],
