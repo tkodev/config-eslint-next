@@ -85,12 +85,16 @@ const tkodevConfig = [
             'object',
             'unknown'
           ],
-          customGroups: {
-            value: {
-              next: ['next', 'next-*'],
-              react: ['react', 'react-*']
+          customGroups: [
+            {
+              groupName: 'next',
+              elementNamePattern: ['^next$', '^next/']
+            },
+            {
+              groupName: 'react',
+              elementNamePattern: ['^react$', '^react-', '^react/']
             }
-          },
+          ],
           newlinesBetween: 'never'
         }
       ],
