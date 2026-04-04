@@ -72,17 +72,16 @@ const tkodevConfig = [
           order: 'asc',
           ignoreCase: false,
           groups: [
-            'type',
             'next',
             'react',
             ['builtin', 'external'],
-            'internal-type',
+            'type',
             'internal',
-            ['parent-type', 'sibling-type', 'index-type'],
+            'type-internal',
             ['parent', 'sibling', 'index'],
+            ['type-parent', 'type-sibling', 'type-index'],
             'side-effect',
             'style',
-            'object',
             'unknown'
           ],
           customGroups: [
@@ -95,7 +94,7 @@ const tkodevConfig = [
               elementNamePattern: ['^react$', '^react-', '^react/']
             }
           ],
-          newlinesBetween: 'never'
+          newlinesBetween: 0
         }
       ],
       'perfectionist/sort-exports': [
@@ -104,7 +103,7 @@ const tkodevConfig = [
           type: 'natural',
           order: 'asc',
           ignoreCase: false,
-          groupKind: 'values-first'
+          groups: ['value-export', 'type-export']
         }
       ],
       'perfectionist/sort-named-imports': [
@@ -114,7 +113,7 @@ const tkodevConfig = [
           order: 'asc',
           ignoreAlias: false,
           ignoreCase: false,
-          groupKind: 'values-first'
+          groups: ['value-import', 'type-import']
         }
       ],
       'perfectionist/sort-named-exports': [
@@ -123,7 +122,7 @@ const tkodevConfig = [
           type: 'natural',
           order: 'asc',
           ignoreCase: false,
-          groupKind: 'values-first'
+          groups: ['value-export', 'type-export']
         }
       ],
       'perfectionist/sort-jsx-props': [
@@ -144,15 +143,36 @@ const tkodevConfig = [
             'multiline',
             'shorthand'
           ],
-          customGroups: {
-            react: ['^ref$', '^key$'],
-            name: ['^id$', '^name$'],
-            type: ['^rel$', '^type$'],
-            className: 'className',
-            img: ['^src$', '^href$', '^alt$', '^width$', '^height$'],
-            anchor: ['^href$', '^to$', '^target$'],
-            callback: '^on.+'
-          }
+          customGroups: [
+            {
+              groupName: 'react',
+              elementNamePattern: ['^ref$', '^key$']
+            },
+            {
+              groupName: 'name',
+              elementNamePattern: ['^id$', '^name$']
+            },
+            {
+              groupName: 'type',
+              elementNamePattern: ['^rel$', '^type$']
+            },
+            {
+              groupName: 'className',
+              elementNamePattern: '^className$'
+            },
+            {
+              groupName: 'img',
+              elementNamePattern: ['^src$', '^href$', '^alt$', '^width$', '^height$']
+            },
+            {
+              groupName: 'anchor',
+              elementNamePattern: ['^href$', '^to$', '^target$']
+            },
+            {
+              groupName: 'callback',
+              elementNamePattern: '^on.+'
+            }
+          ]
         }
       ]
     }
