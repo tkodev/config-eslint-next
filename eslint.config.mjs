@@ -140,8 +140,8 @@ const tkodevConfig = [
             'img',
             'anchor',
             'callback',
-            'multiline',
-            'shorthand'
+            'multiline-prop',
+            'shorthand-prop'
           ],
           customGroups: [
             {
