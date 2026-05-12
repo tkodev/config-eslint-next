@@ -37,16 +37,19 @@
   "peerDependencies": {
     "eslint": "^9.0.0",
     "next": ">=16",
+    "prettier": "^3.0.0",
     "typescript": ">=5"
   },
-  "devDependencies": {
+  "dependencies": {
     "@next/eslint-plugin-next": "^16.0.0",
-    "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-perfectionist": "^5.8.0",
     "eslint-plugin-prettier": "^5.5.4",
-    "prettier-plugin-tailwindcss": "^0.7.2",
+    "prettier-plugin-tailwindcss": "^0.7.2"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.4",
     "typescript": "^5.9.3"
   }
 }
