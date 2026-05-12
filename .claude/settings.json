@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/xuser/ops/repos/tkodev-v5/**)"
+    ]
+  }
+}

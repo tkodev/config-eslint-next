@@ -1,5 +1,5 @@
 {
-  "name": "@tkodev/config-eslint-next",
+  "name": "@tkodev/eslint-config-next",
   "version": "0.2.0",
   "description": "Shared ESLint flat config for Next.js projects at tkodev.",
   "type": "module",
@@ -13,7 +13,8 @@
   "files": [
     "eslint.config.mjs",
     "eslint.config.d.mts",
-    "README.md"
+    "README.md",
+    "LICENSE.md"
   ],
   "keywords": [
     "eslint",
@@ -25,11 +26,11 @@
   "author": "tkodev",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tkodev/config-eslint-next.git"
+    "url": "git+https://github.com/tkodev/eslint-config-next.git"
   },
-  "homepage": "https://github.com/tkodev/config-eslint-next#readme",
+  "homepage": "https://github.com/tkodev/eslint-config-next#readme",
   "bugs": {
-    "url": "https://github.com/tkodev/config-eslint-next/issues"
+    "url": "https://github.com/tkodev/eslint-config-next/issues"
   },
   "scripts": {
     "lint": "eslint ."
@@ -37,16 +38,19 @@
   "peerDependencies": {
     "eslint": "^9.0.0",
     "next": ">=16",
+    "prettier": "^3.0.0",
     "typescript": ">=5"
   },
-  "devDependencies": {
+  "dependencies": {
     "@next/eslint-plugin-next": "^16.0.0",
-    "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-perfectionist": "^5.8.0",
     "eslint-plugin-prettier": "^5.5.4",
-    "prettier-plugin-tailwindcss": "^0.7.2",
+    "prettier-plugin-tailwindcss": "^0.7.2"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.4",
     "typescript": "^5.9.3"
   }
 }
